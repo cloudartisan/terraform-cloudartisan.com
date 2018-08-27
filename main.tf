@@ -7,7 +7,7 @@ provider "random" {
 }
 
 provider "linode" {
-  key = "${var.linode_key}"
+  token = "${var.linode_key}"
 }
 
 resource "linode_instance" "cloudartisan_com" {
