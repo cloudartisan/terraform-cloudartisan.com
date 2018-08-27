@@ -1,3 +1,7 @@
+terraform {
+  required_version = "0.11.2"
+}
+
 provider "linode" {
   key = "${var.linode_key}"
 }
@@ -14,11 +18,11 @@ resource "linode_instance" "cloudartisan_com" {
   ssh_key       = "${chomp(file(var.ssh_key_file))}"
   root_password = "${random_string.password.result}"
 
-	provisioner "remote-exec" {
-		inline = [
-			"sudo apt-get -q update",
-		]
-	}
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get -q update",
+    ]
+  }
 }
 
 resource "random_string" "password" {
