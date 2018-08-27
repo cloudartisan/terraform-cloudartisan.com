@@ -2,6 +2,10 @@ terraform {
   required_version = "0.11.2"
 }
 
+provider "random" {
+  version = "~> 2.0"
+}
+
 provider "linode" {
   key = "${var.linode_key}"
 }
