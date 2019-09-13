@@ -1,10 +1,10 @@
 resource "linode_domain" "cloudartisan_com" {
+  type        = "master"
+  domain      = "cloudartisan.com"
   soa_email   = "hostmaster@cloudartisan.com"
   ttl_sec     = "300"
   expire_sec  = "300"
   refresh_sec = "300"
-  domain      = "cloudartisan.com"
-  domain_type = "master"
 }
 
 # Use GMail for all @cloudartisan.com addresses
