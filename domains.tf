@@ -1,10 +1,10 @@
 resource "linode_domain" "cloudartisan_com" {
-  type        = "master"
-  domain      = "cloudartisan.com"
-  soa_email   = "hostmaster@cloudartisan.com"
+	soa_email   = "hostmaster@cloudartisan.com"
   ttl_sec     = "300"
   expire_sec  = "300"
   refresh_sec = "300"
+  domain      = "cloudartisan.com"
+  domain_type = "master"
 }
 
 # Use GMail for all @cloudartisan.com addresses
@@ -22,13 +22,13 @@ variable "mx_records" {
 }
 
 resource "linode_domain_record" "MX_cloudartisan_com" {
-  count       = "${length(keys(var.mx_records))}"
-  domain_id   = "${linode_domain.cloudartisan_com.id}"
-  record_type = "MX"
-  # The subdomain to delegate to the target MX server
-  name     = "cloudartisan.com"
-  target   = "${element(keys(var.mx_records), count.index)}"
-  priority = "${element(values(var.mx_records), count.index)}"
+	count       = "${length(keys(var.mx_records))}"
+	domain_id   = "${linode_domain.cloudartisan_com.id}"
+	record_type = "MX"
+	# The subdomain to delegate to the target MX server
+  name        = "cloudartisan.com"
+  target      = "${element(keys(var.mx_records), count.index)}"
+  priority    = "${element(values(var.mx_records), count.index)}"
 }
 
 # GitHub Pages IP address 1
